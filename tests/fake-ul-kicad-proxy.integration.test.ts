@@ -77,6 +77,7 @@ test("ti parts engine integrates with fake STEP exports and export formats", asy
     ]),
   );
   expect(stepArchiveResponse.contentType).toBe("application/zip");
-  expect(new TextDecoder().decode(toByteArray(stepArchiveResponse.archiveBuffer)))
-    .toContain("ISO-10303-21");
+  expect(
+    new TextDecoder().decode(toByteArray(stepArchiveResponse.archiveBuffer)),
+  ).toContain("ISO-10303-21");
 });

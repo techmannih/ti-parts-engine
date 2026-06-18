@@ -139,7 +139,9 @@ test("ti parts engine exposes 3D metadata, export formats, and STEP downloads th
     }
 
     const exportFormatsResponse = await tiPartsEngine.getExportFormats({ uid });
-    const stepArchiveResponse = await tiPartsEngine.downloadStepArchive({ uid });
+    const stepArchiveResponse = await tiPartsEngine.downloadStepArchive({
+      uid,
+    });
 
     expect(exportFormatsResponse.uid).toBe(uid);
     expect(exportFormatsResponse.formats).toEqual(
@@ -152,8 +154,9 @@ test("ti parts engine exposes 3D metadata, export formats, and STEP downloads th
       ]),
     );
     expect(stepArchiveResponse.contentType).toBe("application/zip");
-    expect(new TextDecoder().decode(toByteArray(stepArchiveResponse.archiveBuffer)))
-      .toContain("ISO-10303-21");
+    expect(
+      new TextDecoder().decode(toByteArray(stepArchiveResponse.archiveBuffer)),
+    ).toContain("ISO-10303-21");
 
     expect(capturedRequests).toHaveLength(3);
 
